@@ -1,7 +1,10 @@
 package com.example.home.offlinetransfer;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -11,11 +14,17 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +39,16 @@ public class MainActivity extends AppCompatActivity {
     TextView cansend;
     TextView received;
     Button send,receive,topup,transfer;
+    ListView clientlist;
     public WifiManager wifiManager;
     public Context context;
     Boolean connectedtoSender=false;
     WifiManager mainWifi;
     WifiReceiver receiverWifi=null;
+    ArrayList<String> Clients;
+    RelativeLayout wifilayout;
+    String amount=null;
+    String SendAmount=null;
 
     StringBuilder sb = new StringBuilder();
 
@@ -52,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         receive=(Button) findViewById(R.id.receive);
         topup=(Button) findViewById(R.id.topup);
         transfer=(Button) findViewById(R.id.completeTransfer);
+        clientlist=(ListView) findViewById(R.id.clientList);
+        wifilayout=(RelativeLayout) findViewById(R.id.wifi);
+                wifilayout.setVisibility(View.GONE);
 
         sharedPreferences= getSharedPreferences("Balance", Context.MODE_PRIVATE);
         edit=sharedPreferences.edit();
@@ -65,6 +82,22 @@ public class MainActivity extends AppCompatActivity {
         cansend.setText(String.valueOf(sharedPreferences.getInt("canSend",0)));
         received.setText(String.valueOf(sharedPreferences.getInt("received",0)));
 
+        clientlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String ssid=Clients.get(position);
+                Log.i("Connect to ",ssid);
+                if(!connectedtoSender)
+                    connect(ssid);
+
+                wifilayout.setVisibility(View.GONE);
+
+
+            }
+        });
+
+
         topup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,24 +108,49 @@ public class MainActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-                connectedtoSender=false;
-                if (receiverWifi==null) {
-                    receiverWifi = new WifiReceiver();
-                }
-                Log.i("Service ID",String.valueOf(receiverWifi));
-                registerReceiver(receiverWifi, new IntentFilter(
-                        WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-                Log.i("Service ID",String.valueOf(receiverWifi));
-                if(mainWifi.isWifiEnabled()==false)
-                {
-                    mainWifi.setWifiEnabled(true);
-                }
 
 
-                doInback();
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Enter the Amount");
+
+                final EditText input = new EditText( context);
+                input.setInputType(InputType.TYPE_CLASS_TEXT );
+                builder.setView(input);
+
+                builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        amount = input.getText().toString();
+
+                        if(true)
+                        SendAmount=amount;
+
+                        wifilayout.setVisibility(View.VISIBLE);
+                        mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+                        connectedtoSender=false;
+                        if (receiverWifi==null) {
+                            receiverWifi = new WifiReceiver();
+                        }
+                        Log.i("Service ID",String.valueOf(receiverWifi));
+                        registerReceiver(receiverWifi, new IntentFilter(
+                                WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+                        Log.i("Service ID",String.valueOf(receiverWifi));
+                        if(mainWifi.isWifiEnabled()==false)
+                        {
+                            mainWifi.setWifiEnabled(true);
+                        }
+                        doInback();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel",null);
+
+                builder.show();
             }
         });
+
+
+
         receive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,20 +173,30 @@ public class MainActivity extends AppCompatActivity {
     public void transferDataReceiver(){
 
         Log.i("Start","Socket");
-        new ServerSocketHandler(this).execute();
+        new ServerSocketHandler(this,received).execute();
         Log.i("Status ","Free");
         return;
     }
     public void showReceivers(ArrayList<String> SSID){
 
-        for(String s:SSID)
-        Log.i("Wifi",s);
+        Clients=new ArrayList<>();
+
+        for(String s:SSID) {
+            Log.i("Wifi", s);
+            if(s.matches("1.*1") || true)
+                Clients.add(s);
+        }
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Clients);
+        clientlist.setAdapter(adapter);
+
+
 
         WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 
         Log.i("Status",wifiManager.getConnectionInfo().getSupplicantState().name());
-        if(!connectedtoSender)
-                connect("AccessPoint");
+
+
         return;
     }
 
@@ -136,17 +204,14 @@ public class MainActivity extends AppCompatActivity {
 
         WifiConfiguration conf = new WifiConfiguration();
         conf.SSID = "\"" + SSID + "\"";
-        //conf.preSharedKey = "\""+ "logitech" +"\"";
-        conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+        conf.preSharedKey = "\""+ "logitech" +"\"";
+       // conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
         WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
-        wifiManager.addNetwork(conf);
 
+        Log.i("Inside Connect",SSID);
 
-        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-        for( WifiConfiguration i : list ) {
-            if(i.SSID != null && i.SSID.equals("\"" + SSID + "\"")) {
                 wifiManager.disconnect();
-                wifiManager.enableNetwork(i.networkId, true);
+                wifiManager.enableNetwork(wifiManager.addNetwork(conf),true);
                 wifiManager.reconnect();
                 connectedtoSender=true;
                 Log.i("Status","Unregister Service");
@@ -158,26 +223,23 @@ public class MainActivity extends AppCompatActivity {
                    @Override
                    public void run() {
 
-                       ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                       NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-                      // while (!mWifi.isConnected()) ;
                        Log.i("Service","Connected");
                        unregisterReceiver(receiverWifi);
                         startClientSocket();
                    }
                },1000);
 
-                break;
-            }
-        }
+
+
+
 
         return;
     }
 
     public void  startClientSocket(){
 
-        new ClientSocketHandler(this).execute("250");
+        new ClientSocketHandler(this,cansend).execute(SendAmount);
     }
 
     public void doInback()

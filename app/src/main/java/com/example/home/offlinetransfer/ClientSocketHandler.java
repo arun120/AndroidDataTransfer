@@ -1,7 +1,10 @@
 package com.example.home.offlinetransfer;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
@@ -17,9 +20,13 @@ import java.net.Socket;
 public class ClientSocketHandler extends AsyncTask<String,Void,String> {
 
     Context context;
+    TextView canSend;
+    SharedPreferences sharedPreferences=null;
+    SharedPreferences.Editor edit=null;
 
-    ClientSocketHandler(Context c){
+    ClientSocketHandler(Context c,TextView tv){
         context=c;
+        canSend=tv;
     }
     @Override
     protected void onPreExecute() {
@@ -29,7 +36,16 @@ public class ClientSocketHandler extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String res) {
         super.onPostExecute(res);
-        Toast.makeText(context,"Transfered "+res,Toast.LENGTH_SHORT).show();
+        String transferedAmount=res.split(" ")[1];
+        sharedPreferences= context.getSharedPreferences("Balance", Context.MODE_PRIVATE);
+        edit=sharedPreferences.edit();
+        int a=sharedPreferences.getInt("canSend",-1);
+        a-=Integer.valueOf(transferedAmount);
+        edit.putInt("canSend",a);
+        edit.commit();
+        canSend.setText(String.valueOf(a));
+        Toast.makeText(context,"Transfered "+transferedAmount,Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -38,7 +54,7 @@ public class ClientSocketHandler extends AsyncTask<String,Void,String> {
         String res=null;
 
 
-        String serverName = "192.168.43.1";
+        String serverName = "192.168.1.4";
         int port = 5101;
 
         Socket client = null;

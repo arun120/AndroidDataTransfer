@@ -1,8 +1,10 @@
 package com.example.home.offlinetransfer;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
@@ -16,9 +18,13 @@ import java.net.Socket;
 public class ServerSocketHandler extends AsyncTask<Void,Void,String> {
     private Context context;
     private  ServerSocket serverSocket;
+    TextView received;
+    SharedPreferences sharedPreferences=null;
+    SharedPreferences.Editor edit=null;
 
-    ServerSocketHandler(Context c){
+    ServerSocketHandler(Context c,TextView tv){
         context=c;
+        received=tv;
     }
 
     @Override
@@ -29,6 +35,14 @@ public class ServerSocketHandler extends AsyncTask<Void,Void,String> {
     @Override
     protected void onPostExecute(String res) {
         super.onPostExecute(res);
+        String transferedAmount=res;
+        sharedPreferences= context.getSharedPreferences("Balance", Context.MODE_PRIVATE);
+        edit=sharedPreferences.edit();
+        int a=sharedPreferences.getInt("received",-1);
+        a+=Integer.valueOf(transferedAmount);
+        edit.putInt("received",a);
+        edit.commit();
+        received.setText(String.valueOf(a));
         Toast.makeText(context,"Transfered "+res,Toast.LENGTH_SHORT).show();
     }
 
@@ -50,7 +64,7 @@ public class ServerSocketHandler extends AsyncTask<Void,Void,String> {
                 Log.i("Received",res);
                 DataOutputStream out = new DataOutputStream(server.getOutputStream());
                 Integer.valueOf(res);
-                out.writeUTF("Success");
+                out.writeUTF("Success "+res);
                 server.close();
 
                 break;
