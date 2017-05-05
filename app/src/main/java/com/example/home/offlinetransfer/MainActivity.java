@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor edit=null;
     TextView cansend;
     TextView received;
-    Button send,receive,topup,transfer;
+    Button send,receive,topup,transfer,DTMF;
     ListView clientlist;
     public WifiManager wifiManager;
     public Context context;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         receive=(Button) findViewById(R.id.receive);
         topup=(Button) findViewById(R.id.topup);
         transfer=(Button) findViewById(R.id.completeTransfer);
+        DTMF=(Button) findViewById(R.id.DTMF);
         clientlist=(ListView) findViewById(R.id.clientList);
         wifilayout=(RelativeLayout) findViewById(R.id.wifi);
                 wifilayout.setVisibility(View.GONE);
@@ -97,7 +98,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        DTMF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,Payment.class);
+                startActivity(i);
+            }
+        });
         topup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

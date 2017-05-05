@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.home.offlinetransfer.Payment">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Account Number"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="81dp"
+        android:id="@+id/accNum" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="IFSC Code"
+        android:ems="10"
+        android:layout_below="@+id/accNum"
+        android:layout_alignLeft="@+id/accNum"
+        android:layout_alignStart="@+id/accNum"
+        android:layout_marginTop="55dp"
+        android:id="@+id/IFSC" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Acknowledge Number"
+        android:ems="10"
+        android:layout_below="@+id/IFSC"
+        android:layout_alignLeft="@+id/IFSC"
+        android:layout_alignStart="@+id/IFSC"
+        android:layout_marginTop="53dp"
+        android:id="@+id/ack" />
+
+    <Button
+        android:text="Transfer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ack"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:id="@+id/transfer" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Amount"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/accNum"
+        android:layout_alignStart="@+id/accNum"
+        android:layout_marginTop="18dp"
+        android:id="@+id/amount" />
+
+</RelativeLayout>
