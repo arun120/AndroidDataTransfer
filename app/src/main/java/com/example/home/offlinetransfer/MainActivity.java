@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         receive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createWifiAccessPoint("AccessPoint");
+                HotspotController.createWifiAccessPoint("AccessPoint",context);
                 transferDataReceiver();
             }
         });
@@ -265,47 +265,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void createWifiAccessPoint(String name) {
-        WifiManager wifiManager = (WifiManager)getBaseContext().getSystemService(Context.WIFI_SERVICE);
-        if(wifiManager.isWifiEnabled())
-        {
-            wifiManager.setWifiEnabled(false);
-        }
-        Method[] wmMethods = wifiManager.getClass().getDeclaredMethods();
-
-        for(Method method: wmMethods){
-            if(method.getName().equals("setWifiApEnabled")){
-
-                WifiConfiguration netConfig = new WifiConfiguration();
-
-                netConfig.SSID = name;
-                netConfig.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
-                netConfig.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
-                netConfig.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
-                netConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
-
-                try {
-                    Method setWifiApMethod = wifiManager.getClass().getMethod("setWifiApEnabled",  WifiConfiguration.class, boolean.class);
-                    setWifiApMethod.invoke(wifiManager, netConfig,true);
-
-                    Method isWifiApEnabledmethod = wifiManager.getClass().getMethod("isWifiApEnabled");
-                    while(!(Boolean)isWifiApEnabledmethod.invoke(wifiManager)){};
-                    Method getWifiApStateMethod = wifiManager.getClass().getMethod("getWifiApState");
-                    getWifiApStateMethod.invoke(wifiManager);
-                    Method getWifiApConfigurationMethod = wifiManager.getClass().getMethod("getWifiApConfiguration");
-                    netConfig=(WifiConfiguration)getWifiApConfigurationMethod.invoke(wifiManager);
-                    Log.e("CLIENT", "\nSSID:"+netConfig.SSID+"\nPassword:"+netConfig.preSharedKey+"\n");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
 
-
-
-            }
-        }
-
-    }
 
 
 

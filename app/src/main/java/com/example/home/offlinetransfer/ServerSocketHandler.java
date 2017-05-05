@@ -43,6 +43,10 @@ public class ServerSocketHandler extends AsyncTask<Void,Void,String> {
         edit.putInt("received",a);
         edit.commit();
         received.setText(String.valueOf(a));
+
+
+       HotspotController.turnoffWifiAccessPoint(context);
+
         Toast.makeText(context,"Transfered "+res,Toast.LENGTH_SHORT).show();
     }
 

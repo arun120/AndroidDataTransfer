@@ -3,6 +3,7 @@ package com.example.home.offlinetransfer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.net.Socket;
 
 /**
@@ -44,6 +46,8 @@ public class ClientSocketHandler extends AsyncTask<String,Void,String> {
         edit.putInt("canSend",a);
         edit.commit();
         canSend.setText(String.valueOf(a));
+
+
         Toast.makeText(context,"Transfered "+transferedAmount,Toast.LENGTH_SHORT).show();
 
     }
