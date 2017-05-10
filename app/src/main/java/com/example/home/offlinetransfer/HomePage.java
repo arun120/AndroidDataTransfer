@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
 
         Button signUp=(Button) findViewById(R.id.signUp);
         final EditText number= (EditText) findViewById(R.id.number);
@@ -25,7 +26,8 @@ public class HomePage extends AppCompatActivity {
         final EditText confirm= (EditText) findViewById(R.id.confirm);
         sharedPreferences= getSharedPreferences("Data", Context.MODE_PRIVATE);
         edit=sharedPreferences.edit();
-        if(sharedPreferences.getString("Password",null)!=null&&sharedPreferences.getString("Account",null)!=null){
+        Log.i("DB",sharedPreferences.getString("Password",null));
+        if(sharedPreferences.getString("Password",null)!=null&&sharedPreferences.getString("Name",null)!=null){
             Intent i=new Intent(HomePage.this,Authenticate.class);
             startActivity(i);
             finish();
