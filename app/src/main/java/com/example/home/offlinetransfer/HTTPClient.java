@@ -18,8 +18,8 @@ public class HTTPClient {
         URL url = null;
         try {
             url = new URL(surl + "?" + params);
-
             connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
             connection.connect();
             InputStream input = connection.getInputStream();
             char c;

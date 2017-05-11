@@ -105,10 +105,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        transfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TransferToAccount(MainActivity.this,received).execute();
+            }
+        });
         topup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"TopUP",Toast.LENGTH_SHORT).show();
+                new Topup(MainActivity.this,cansend).execute();
+                //Toast.makeText(getApplicationContext(),"TopUP",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -161,7 +169,8 @@ public class MainActivity extends AppCompatActivity {
         receive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HotspotController.createWifiAccessPoint("AccessPoint",context);
+                SharedPreferences sp=getSharedPreferences("Data", Context.MODE_PRIVATE);
+                HotspotController.createWifiAccessPoint("1"+sp.getString("Name","Unknown")+"1",context);
                 transferDataReceiver();
             }
         });
@@ -190,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(String s:SSID) {
             Log.i("Wifi", s);
-            if(s.matches("1.*1") || true)
+            if(s.matches("1.*1"))
                 Clients.add(s);
         }
 

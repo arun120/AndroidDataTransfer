@@ -5,5 +5,5 @@ package com.example.home.offlinetransfer;
  */
 public class ServerDetails {
 
-public static final String BaseURL="localhost:8080/Payments%20WebApp/";
+public static final String BaseURL="http://192.168.1.4:8080/Payments%20WebApp/";
 }
