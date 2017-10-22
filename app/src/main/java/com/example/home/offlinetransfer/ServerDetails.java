@@ -5,5 +5,7 @@ package com.example.home.offlinetransfer;
  */
 public class ServerDetails {
 
-public static final String BaseURL="http://192.168.1.4:8080/Payments%20WebApp/";
+            public static final String BaseURL="http://192.168.1.4:8080/Payments%20WebApp/";
+            public static final String BOBServer="http://104.211.176.248:8080/bob/bobuat/api/";
+            public static final String serveraccount="17370100011241";
 }

@@ -30,7 +30,7 @@ public class Authenticate extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 Log.i("Input", String.valueOf(s));
                 if(password.contentEquals(s)){
-                    Intent i=new Intent(Authenticate.this,MainActivity.class);
+                    Intent i=new Intent(Authenticate.this,HomeActivity.class);
                     startActivity(i);
                     finish();
                 }

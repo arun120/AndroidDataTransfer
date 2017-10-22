@@ -10,16 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.home.offlinetransfer.HomePage">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Mobile Number"
+        android:text="Customer Id"
         android:ems="10"
         android:layout_marginTop="151dp"
         android:id="@+id/number"
@@ -40,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Password"
+        android:text="mPin"
         android:ems="10"
         android:layout_alignBottom="@+id/editText2"
         android:layout_alignLeft="@+id/editText2"
@@ -57,10 +52,10 @@
         android:layout_below="@+id/editText2"
         android:layout_alignLeft="@+id/editText2"
         android:layout_alignStart="@+id/editText2"
-        android:text="confirm" />
+        android:text="mPin" />
 
     <Button
-        android:text="Next"
+        android:text="SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

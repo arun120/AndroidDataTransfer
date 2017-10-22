@@ -58,7 +58,7 @@ public class ClientSocketHandler extends AsyncTask<String,Void,String> {
         String res=null;
 
 
-        String serverName = "192.168.1.4";
+        String serverName = "192.168.43.1";
         int port = 5101;
 
         Socket client = null;
