@@ -10,8 +10,12 @@ import java.net.URL;
  */
 public class HTTPClient {
 
-    public static String post(String surl,String params){
-        return post(surl,null,params,null);
+    public static String post(String surl,String params,String body){
+        if(params==null)
+        return post(surl,"add",null,body);
+        else
+            return post(surl,null,params,body);
+
     }
 
     private static String post(String surl,String header,String params,String body){

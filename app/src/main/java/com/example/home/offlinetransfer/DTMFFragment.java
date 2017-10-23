@@ -28,7 +28,7 @@ public class DTMFFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button DTMF;
+    Button beneficiary,DTMFb;
 
 
     private OnFragmentInteractionListener mListener;
@@ -88,11 +88,20 @@ public class DTMFFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        DTMF=(Button) getActivity().findViewById(R.id.DTMF);
-        DTMF.setOnClickListener(new View.OnClickListener() {
+        beneficiary=(Button) getActivity().findViewById(R.id.beneficiary);
+        DTMFb=(Button) getActivity().findViewById(R.id.DTMF);
+        beneficiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(getContext(),Payment.class);
+                startActivity(i);
+            }
+        });
+
+        DTMFb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getContext(), DTMF.class);
                 startActivity(i);
             }
         });

@@ -5,8 +5,8 @@ package com.example.home.offlinetransfer;
  */
 public class Encoder {
 
-    public static  String encode(String amt,String num,String IFSC,String ack){
-        return amt+"*"+num+"*"+IFSC+"*"+ack;
+    public static  String encode(String payee,String amt,String type){
+        return payee+"*"+amt+"*"+type;
     }
 
 }

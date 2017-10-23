@@ -24,6 +24,7 @@ public class HomePage extends AppCompatActivity {
         final EditText number= (EditText) findViewById(R.id.number);
         final EditText password=(EditText) findViewById(R.id.password);
         final EditText confirm= (EditText) findViewById(R.id.confirm);
+        final EditText name=(EditText) findViewById(R.id.name);
         sharedPreferences= getSharedPreferences("Data", Context.MODE_PRIVATE);
         edit=sharedPreferences.edit();
         Log.i("DB",sharedPreferences.getString("Password","null"));
@@ -39,6 +40,7 @@ public class HomePage extends AppCompatActivity {
                 if(password.getText().toString().equals(confirm.getText().toString())){
                     edit.putString("Number",number.getText().toString());
                     edit.putString("Password",confirm.getText().toString());
+                    edit.putString("Name",name.getEditableText().toString());
                     edit.commit();
                     Intent i=new Intent(HomePage.this,Signup.class);
                     i.putExtra("custid",number.getText().toString());

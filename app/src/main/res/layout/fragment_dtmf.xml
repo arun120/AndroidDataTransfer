@@ -13,9 +13,18 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account Transfer DTMF"
-            android:id="@+id/DTMF"
+            android:text="Add Beneficiary"
+            android:id="@+id/beneficiary"
             android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="104dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transfer Amount"
+            android:id="@+id/DTMF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

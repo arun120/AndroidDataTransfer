@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.home.offlinetransfer.DTMF">
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/type"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="87dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/beneficiary"
+        android:layout_below="@+id/type"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/amout"
+        android:layout_marginTop="72dp"
+        android:layout_below="@+id/beneficiary"
+        android:layout_alignRight="@+id/beneficiary"
+        android:layout_alignEnd="@+id/beneficiary"
+        android:layout_toEndOf="@+id/transfer"
+        android:layout_alignLeft="@+id/transfer"
+        android:layout_alignStart="@+id/transfer"
+        android:layout_toRightOf="@+id/transfer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amount"
+        android:id="@+id/textView4"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignBaseline="@+id/amout"
+        android:layout_alignBottom="@+id/amout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TRANSFER"
+        android:id="@+id/transfer"
+        android:layout_below="@+id/amout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/servernumber"
+        android:inputType="number"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_marginTop="34dp"
+        android:layout_alignRight="@+id/transfer"
+        android:layout_alignEnd="@+id/transfer"
+        android:text="9445155260" />
+</RelativeLayout>
