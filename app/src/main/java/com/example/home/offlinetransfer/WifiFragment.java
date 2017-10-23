@@ -67,6 +67,7 @@ public class WifiFragment extends Fragment {
     String SendAmount=null;
     Dialog dialog;
 
+
     StringBuilder sb = new StringBuilder();
 
     private final Handler handler = new Handler();
@@ -260,7 +261,7 @@ public class WifiFragment extends Fragment {
     public void transferDataReceiver(){
 
         Log.i("Start","Socket");
-        new ServerSocketHandler(context,received).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new ServerSocketHandler(context,received,getActivity()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         Log.i("Status ","Free");
         return;
     }

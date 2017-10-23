@@ -16,13 +16,23 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/layoutselect"
         android:visibility="visible">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Account"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/display"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/accountlist"
+            android:layout_below="@id/display"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true" />
+             />
     </RelativeLayout>
 
     <RelativeLayout

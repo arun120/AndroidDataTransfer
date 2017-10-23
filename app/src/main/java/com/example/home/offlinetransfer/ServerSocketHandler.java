@@ -1,5 +1,7 @@
 package com.example.home.offlinetransfer;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -17,19 +19,25 @@ import java.net.Socket;
  */
 public class ServerSocketHandler extends AsyncTask<Void,Void,String> {
     private Context context;
+    private Activity activity;
     private  ServerSocket serverSocket;
     TextView received;
     SharedPreferences sharedPreferences=null;
     SharedPreferences.Editor edit=null;
 
-    ServerSocketHandler(Context c,TextView tv){
+    ServerSocketHandler(Context c,TextView tv,Activity a){
         context=c;
+        activity=a;
         received=tv;
     }
-
+    ProgressDialog mProgressDialog;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        mProgressDialog=new ProgressDialog(activity);
+        mProgressDialog.setMessage("Waiting for Sender...");
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
     }
 
     @Override
@@ -46,8 +54,9 @@ public class ServerSocketHandler extends AsyncTask<Void,Void,String> {
 
 
        HotspotController.turnoffWifiAccessPoint(context);
-
+        mProgressDialog.dismiss();
         Toast.makeText(context,"Transfered "+res,Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

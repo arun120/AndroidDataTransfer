@@ -10,67 +10,93 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.home.offlinetransfer.HomePage">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true">
+
+        <TableRow>
+            <TextView
+                android:text="Customer Id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Customer Id"
+        android:text=""
         android:ems="10"
-        android:layout_marginTop="151dp"
+        android:layout_column="2"
         android:id="@+id/number"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/number"
-        android:layout_alignLeft="@+id/number"
-        android:layout_alignStart="@+id/number"
-        android:layout_marginTop="45dp"
-        android:id="@+id/editText2" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/name"
+                android:layout_column="2" />
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:text="mPin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mPin"
+        android:text=""
         android:inputType="number"
         android:ems="10"
-        android:layout_alignBottom="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
+        android:layout_column="2"
         android:id="@+id/password" />
+        </TableRow>
 
+        <TableRow>
+            <TextView
+                android:text="Confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_marginTop="23dp"
         android:id="@+id/confirm"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:text="mPin" />
-
+        android:layout_column="2"
+         />
+        </TableRow>
+        <TableRow>
     <Button
         android:text="SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:layout_column="1"
+        android:layout_span="2"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
         android:id="@+id/signUp" />
+        </TableRow>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/name"
-        android:layout_alignBottom="@+id/number"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp" />
+
+    </TableLayout>
 </RelativeLayout>

@@ -8,67 +8,89 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.home.offlinetransfer.DTMF">
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/tableLayout">
 
+    <TableRow>
+        <TextView
+            android:text="Server Number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/servernumber"
+            android:inputType="number"
+            android:text="9445155260" />
+
+</TableRow>
+    <TableRow>
+    <TextView
+        android:text="Transaction Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1" />
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/type"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="87dp" />
-
+        android:layout_column="2"
+        />
+  </TableRow>
+    <TableRow>
+    <TextView
+        android:text="Select Beneficiary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1" />
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/beneficiary"
-        android:layout_below="@+id/type"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+         />
+</TableRow>
+    <TableRow>
+    <TextView
+        android:text="Amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/amout"
-        android:layout_marginTop="72dp"
-        android:layout_below="@+id/beneficiary"
-        android:layout_alignRight="@+id/beneficiary"
-        android:layout_alignEnd="@+id/beneficiary"
-        android:layout_toEndOf="@+id/transfer"
-        android:layout_alignLeft="@+id/transfer"
-        android:layout_alignStart="@+id/transfer"
-        android:layout_toRightOf="@+id/transfer" />
+        android:id="@+id/amout"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Amount"
-        android:id="@+id/textView4"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignBaseline="@+id/amout"
-        android:layout_alignBottom="@+id/amout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
+  </TableRow>
+<TableRow>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TRANSFER"
         android:id="@+id/transfer"
-        android:layout_below="@+id/amout"
-        android:layout_centerHorizontal="true"
+        android:layout_column="1"
+        android:layout_span="2"
         android:layout_marginTop="34dp" />
+</TableRow>
+</TableLayout>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/servernumber"
-        android:inputType="number"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_marginTop="34dp"
-        android:layout_alignRight="@+id/transfer"
-        android:layout_alignEnd="@+id/transfer"
-        android:text="9445155260" />
+        android:text="Enter Details To Transfer"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/tableLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="37dp" />
+
+
 </RelativeLayout>

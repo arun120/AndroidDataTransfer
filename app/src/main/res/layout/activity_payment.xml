@@ -8,82 +8,118 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.home.offlinetransfer.Payment">
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="bank"
-        android:ems="10"
-        android:layout_marginTop="15dp"
-        android:id="@+id/bank"
-        android:layout_below="@+id/acnumber"
-        android:layout_alignLeft="@+id/IFSC"
-        android:layout_alignStart="@+id/IFSC" />
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:text="Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:layout_column="2"/>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:text="Bank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="IFSC Code"
+        android:ems="10"
+        android:id="@+id/bank"
+        android:layout_column="2"/>
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Account Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/acnumber"
+                android:layout_column="2"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Branch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/branch"
+                android:layout_column="2"/>
+        </TableRow>
+
+        <TableRow>
+        <TextView
+            android:text="IFSC Code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1" />
+
+        <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
         android:ems="10"
         android:id="@+id/IFSC"
-        android:layout_below="@+id/bank"
-        android:layout_marginTop="15dp"/>
+            android:layout_column="2"/>
+        </TableRow>
 
-    <EditText
+        <TableRow>
+        <TextView
+            android:text="Type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1" />
+
+        <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="type"
+        android:text=""
         android:ems="10"
-        android:layout_marginTop="15dp"
         android:id="@+id/type"
-        android:layout_below="@+id/branch"
-        android:layout_centerHorizontal="true" />
-
+            android:layout_column="2"/>
+        </TableRow>
+<TableRow>
     <Button
         android:text="Add Benificiary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/type"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_column="1"
+        android:layout_span="2"
         android:id="@+id/add" />
+</TableRow>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Acnumber"
-        android:ems="10"
-        android:id="@+id/acnumber"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/name"
-        android:layout_alignLeft="@+id/bank"
-        android:layout_alignStart="@+id/bank" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/branch"
-        android:text="branch"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/IFSC"
-        android:layout_alignLeft="@+id/IFSC"
-        android:layout_alignStart="@+id/IFSC"
-        android:layout_alignRight="@+id/IFSC"
-        android:layout_alignEnd="@+id/IFSC" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/name"
-        android:layout_alignParentTop="true"
-        android:text="Name"
-        android:layout_alignLeft="@+id/acnumber"
-        android:layout_alignStart="@+id/acnumber"
-        android:layout_alignRight="@+id/acnumber"
-        android:layout_alignEnd="@+id/acnumber" />
 
+    </TableLayout>
 
 </RelativeLayout>
