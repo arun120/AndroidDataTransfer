@@ -111,7 +111,7 @@ public class DTMF extends AppCompatActivity {
                     type="0";
                 else
                     type="1";
-                number="1500";
+                //number="1500";
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" +number+","+Encoder.encode(sPayee,amt,type)));
 
                 //Log.i("Number Dialled", String.valueOf(Uri.parse("tel:" +"1500,"+ Encoder.encode(amount,accNumber,IFSCCode,acknowledgement))));
