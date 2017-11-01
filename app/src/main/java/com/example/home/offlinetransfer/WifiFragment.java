@@ -271,7 +271,7 @@ public class WifiFragment extends Fragment {
 
         for(String s:SSID) {
             Log.i("Wifi", s);
-            if(s.matches("1.*1")||true)
+            if(s.matches("1.*1"))
                 Clients.add(s);
         }
 
